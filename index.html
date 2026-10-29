@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>콘텐츠 캘린더</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 헤더: 앱 이름과 오늘 날짜 -->
+  <header class="app-header">
+    <h1 class="app-title">콘텐츠 캘린더</h1>
+    <p class="today" id="today"></p>
+  </header>
+
+  <main class="layout">
+    <!-- 등록·수정 폼 -->
+    <section class="panel form-panel" aria-labelledby="form-title">
+      <h2 class="panel-title" id="form-title">콘텐츠 등록</h2>
+
+      <form id="content-form" novalidate>
+        <div class="field">
+          <label for="title-input">제목</label>
+          <input type="text" id="title-input" name="title" maxlength="100" placeholder="예: 10월 신제품 언박싱 릴스">
+          <p class="error-message" id="title-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="channel-input">채널</label>
+          <select id="channel-input" name="channel">
+            <option value="">채널 선택</option>
+          </select>
+          <p class="error-message" id="channel-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="date-input">예정일</label>
+          <input type="date" id="date-input" name="scheduledDate">
+          <p class="error-message" id="date-error" aria-live="polite"></p>
+        </div>
+
+        <div class="field">
+          <label for="status-input">상태</label>
+          <select id="status-input" name="status"></select>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" id="submit-button">등록</button>
+          <button type="button" class="btn" id="cancel-button" hidden>취소</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- 필터 바와 콘텐츠 목록 -->
+    <section class="list-section" aria-labelledby="list-title">
+      <h2 class="visually-hidden" id="list-title">콘텐츠 목록</h2>
+
+      <!-- 보기 전환 탭 -->
+      <div class="view-tabs" id="view-tabs" role="group" aria-label="보기 전환">
+        <button type="button" class="tab-button" data-view="list" aria-pressed="true">목록</button>
+        <button type="button" class="tab-button" data-view="calendar" aria-pressed="false">캘린더</button>
+      </div>
+
+      <div class="filter-bar">
+        <div class="filter-field">
+          <label for="channel-filter">채널</label>
+          <select id="channel-filter">
+            <option value="all">전체</option>
+          </select>
+        </div>
+        <div class="filter-field">
+          <label for="status-filter">상태</label>
+          <select id="status-filter">
+            <option value="all">전체</option>
+          </select>
+        </div>
+        <p class="count" id="content-count" aria-live="polite"></p>
+      </div>
+
+      <ul class="content-list" id="content-list"></ul>
+
+      <!-- 월간 캘린더 보기 -->
+      <div class="calendar" id="calendar" hidden>
+        <div class="calendar-header">
+          <button type="button" class="btn btn-small" id="prev-month" aria-label="이전 달">‹ 이전</button>
+          <h3 class="calendar-title" id="calendar-title" aria-live="polite"></h3>
+          <button type="button" class="btn btn-small" id="next-month" aria-label="다음 달">다음 ›</button>
+        </div>
+        <div class="calendar-grid" id="calendar-grid"></div>
+      </div>
+
+      <!-- 빈 상태 문구는 script.js가 상황(전체 0건 / 필터 결과 0건)에 맞게 채운다 -->
+      <p class="empty-message" id="empty-message" aria-live="polite" hidden></p>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

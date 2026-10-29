@@ -1,0 +1,544 @@
+/* ===== 색과 기본값 ===== */
+:root {
+  /* 기본 색 */
+  --color-bg: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-text: #1f2328;
+  --color-text-muted: #656d76;
+  --color-border: #d8dde3;
+  --color-primary: #3b5bdb;
+  --color-primary-hover: #2f4ac0;
+  --color-danger: #d6336c;
+  --color-error: #c92a2a;
+
+  /* 채널 색 (배경 / 글자) */
+  --channel-instagram-bg: #fde2ef;
+  --channel-instagram-text: #a61e4d;
+  --channel-youtube-bg: #ffe3e3;
+  --channel-youtube-text: #c92a2a;
+  --channel-blog-bg: #d3f9f0;
+  --channel-blog-text: #087f5b;
+  --channel-newsletter-bg: #ece5ff;
+  --channel-newsletter-text: #6741d9;
+
+  /* 상태 색 (배경 / 글자) */
+  --status-planned-bg: #e9ecef;
+  --status-planned-text: #495057;
+  --status-in_progress-bg: #dbe8ff;
+  --status-in_progress-text: #1c56c4;
+  --status-review-bg: #fff3bf;
+  --status-review-text: #8a6100;
+  --status-published-bg: #d3f9d8;
+  --status-published-text: #2b8a3e;
+
+  /* 지연 배지 */
+  --delay-bg: #ffe8cc;
+  --delay-text: #c2410c;
+
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --font: system-ui, -apple-system, "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+}
+
+/* ===== 기본 초기화 ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+/* display를 지정한 요소(목록 flex, 캘린더 grid 등)도 hidden이면 반드시 숨긴다 */
+[hidden] {
+  display: none !important;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* 화면에는 숨기고 스크린리더에는 읽히게 */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ===== 헤더 ===== */
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.app-title {
+  font-size: 20px;
+}
+
+.today {
+  color: var(--color-text-muted);
+}
+
+/* ===== 레이아웃 (기본: 1단) ===== */
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.panel {
+  padding: 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.panel-title {
+  margin-bottom: 16px;
+  font-size: 17px;
+}
+
+/* ===== 폼 ===== */
+.field {
+  margin-bottom: 12px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.field input,
+.field select,
+.filter-field select {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px 10px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.field input:focus,
+.field select:focus,
+.filter-field select:focus,
+.btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+/* 오류 문구: 비어 있을 때는 자리만 차지 */
+.error-message {
+  min-height: 20px;
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--color-error);
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ===== 버튼 ===== */
+.btn {
+  min-height: 40px;
+  padding: 8px 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--color-bg);
+}
+
+.btn-primary {
+  flex: 1;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn-small {
+  min-height: 32px;
+  padding: 4px 10px;
+  font-size: 13px;
+}
+
+.btn-danger {
+  color: var(--color-danger);
+}
+
+/* ===== 필터 바 ===== */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: flex-end;
+  margin-bottom: 12px;
+}
+
+.filter-field {
+  flex: 1 1 120px;
+  min-width: 0;
+}
+
+.filter-field label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.count {
+  margin-left: auto;
+  padding-bottom: 8px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+/* ===== 콘텐츠 목록과 카드 ===== */
+.content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  padding: 14px 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* 수정 중인 카드는 테두리로 강조한다 */
+.card.is-editing {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+/* 발행 완료 카드는 흐리게 처리해 진행 중인 콘텐츠가 눈에 띄게 한다.
+   opacity를 쓰면 글자 대비가 너무 낮아지므로 배경과 제목 색만 낮춘다. */
+.card.is-published {
+  background: var(--color-bg);
+  box-shadow: none;
+}
+
+.card.is-published .card-title {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.card-date {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.card-title {
+  margin-bottom: 10px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.empty-message {
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+}
+
+/* ===== 배지 ===== */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.badge-channel[data-channel="instagram"] {
+  color: var(--channel-instagram-text);
+  background: var(--channel-instagram-bg);
+}
+
+.badge-channel[data-channel="youtube"] {
+  color: var(--channel-youtube-text);
+  background: var(--channel-youtube-bg);
+}
+
+.badge-channel[data-channel="blog"] {
+  color: var(--channel-blog-text);
+  background: var(--channel-blog-bg);
+}
+
+.badge-channel[data-channel="newsletter"] {
+  color: var(--channel-newsletter-text);
+  background: var(--channel-newsletter-bg);
+}
+
+.badge-status[data-status="planned"] {
+  color: var(--status-planned-text);
+  background: var(--status-planned-bg);
+}
+
+.badge-status[data-status="in_progress"] {
+  color: var(--status-in_progress-text);
+  background: var(--status-in_progress-bg);
+}
+
+.badge-status[data-status="review"] {
+  color: var(--status-review-text);
+  background: var(--status-review-bg);
+}
+
+.badge-status[data-status="published"] {
+  color: var(--status-published-text);
+  background: var(--status-published-bg);
+}
+
+.badge-delay {
+  color: var(--delay-text);
+  background: var(--delay-bg);
+}
+
+/* 카드의 상태 select: 배지 모양을 유지하면서 바꿀 수 있게 한다 */
+.status-select {
+  min-height: 32px;
+  padding: 4px 8px 4px 12px;
+  border: 0;
+  cursor: pointer;
+}
+
+.status-select:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+/* 펼친 목록의 옵션은 기본 색으로 보여준다 */
+.status-select option {
+  color: var(--color-text);
+  background: var(--color-surface);
+}
+
+/* ===== 보기 전환 탭 ===== */
+.view-tabs {
+  display: inline-flex;
+  margin-bottom: 12px;
+  padding: 3px;
+  background: var(--color-border);
+  border-radius: 8px;
+}
+
+.tab-button {
+  min-height: 34px;
+  padding: 4px 16px;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tab-button[aria-pressed="true"] {
+  font-weight: 600;
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+}
+
+.tab-button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+/* ===== 월간 캘린더 ===== */
+.calendar {
+  padding: 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.calendar-header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.calendar-title {
+  font-size: 16px;
+}
+
+/* minmax(0, 1fr): 긴 제목 칩이 칸을 넓혀 가로 스크롤을 만들지 않게 한다 */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 2px;
+}
+
+.calendar-weekday {
+  padding: 4px 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.calendar-day {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  min-height: 72px;
+  padding: 4px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.calendar-day.is-empty {
+  background: var(--color-bg);
+  border-color: transparent;
+}
+
+.calendar-day.is-today {
+  border-color: var(--color-primary);
+  box-shadow: inset 0 0 0 1px var(--color-primary);
+}
+
+.calendar-date {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.calendar-day.is-today .calendar-date {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* 캘린더 칩: 채널 색은 .badge-channel 규칙을 함께 쓴다. 긴 제목은 한 줄 말줄임 */
+.chip {
+  display: block;
+  width: 100%;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+/* 좁은 화면에서는 칸과 칩을 작게 */
+@media (max-width: 480px) {
+  .calendar {
+    padding: 8px;
+  }
+
+  .calendar-day {
+    min-height: 56px;
+    padding: 2px;
+  }
+
+  .chip {
+    padding: 1px 3px;
+    font-size: 11px;
+  }
+}
+
+/* ===== 768px 이상: 왼쪽 폼 + 오른쪽 목록 2단 ===== */
+@media (min-width: 768px) {
+  .layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .form-panel {
+    position: sticky;
+    top: 24px;
+    flex: 0 0 320px;
+  }
+
+  .list-section {
+    flex: 1;
+    min-width: 0;
+  }
+}
